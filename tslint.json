@@ -5,6 +5,13 @@
   ],
   "rules": {
     "semicolon": false,
-    "trailing-comma": false
+    "trailing-comma": false,
+    "no-shadowed-variable": false,
+    "prefer-const": false,
+    "variable-name": false,
+    "no-var-keyword": false,
+    "no-unused-expression": false,
+    "ban-types": false,
+    "object-literal-shorthand": false
   }
 }
