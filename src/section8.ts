@@ -140,7 +140,7 @@
   let s = 3
   let t = 5
   let u = s + t // u = 8
-  a = 5 // u = 10 ※値が再計算される
+  s = 5 // u = 10 ※値が再計算される
 
   // 【参考】プログラミングパラダイム(思想)
   // 非構造化プログラミング
@@ -183,11 +183,36 @@
 
   // WindowEventMapのaddEventListener
 
+  document.addEventListener('click', function() {
+    // クリック時の処理
+  });
+
+  $('button').on('click', function() {
+    // クリック時の処理
+  });
+
 }
 
-import {fork} from 'child_process'
+import {exec, fork} from 'child_process'
 
 {
-  let child = fork('
-  ')
+  exec('ls', (error, stdout, stderr) => {
+    if (error) {
+        console.error(`[ERROR] ${error}`);
+        return;
+    }
+    console.log(`stdout: ${stdout}`);
+    console.log(`stderr: ${stderr}`);
+    });
+
+  console.log('Hello');
+
+  const myChild = fork('./my-child'); // my-child.jsのプロセス生成
+
+  myChild.on('message', (message) => {
+    console.log('子プロセスからのメッセージ', message)
+  })
+
+  myChild.send('message', "From parent") // 親プロセスからのメッセージ
 }
+
